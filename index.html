@@ -76,8 +76,18 @@
           userList.appendChild(li);
 
           let obj = { name: nameInput.value, email: emailInput.value };
-          let userDetails = JSON.stringify(obj);
-          localStorage.setItem("User Details", userDetails);
+          // let user = JSON.stringify(obj);
+          // localStorage.setItem("User Details", user);
+          let userDetails = localStorage.getItem("userdetails");
+          if (userDetails === null) {
+            userDetails = [];
+          } else {
+            userDetails = JSON.parse(userDetails);
+          }
+
+          userDetails.push(obj);
+          localStorage.setItem("userdetails", JSON.stringify(userDetails));
+          // [{name:nidhi,email:"agra"}]
         }
       }
     </script>
