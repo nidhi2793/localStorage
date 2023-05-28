@@ -72,6 +72,10 @@
           li.appendChild(
             document.createTextNode(`${nameInput.value}: ${emailInput.value}`)
           );
+          var deleteBtn = document.createElement("button");
+          deleteBtn.className = "dlt";
+          deleteBtn.appendChild(document.createTextNode("Delete"));
+          li.appendChild(deleteBtn);
 
           userList.appendChild(li);
 
@@ -88,6 +92,18 @@
           userDetails.push(obj);
           localStorage.setItem("userdetails", JSON.stringify(userDetails));
           // [{name:nidhi,email:"agra"}]
+        }
+      }
+      const list = document.getElementById("users");
+      console.log(list);
+      list.addEventListener("click", removeItem);
+      function removeItem(e) {
+        if (e.target.classList.contains("dlt")) {
+          if (confirm("Are You Sure?")) {
+            var li = e.target.parentElement;
+            list.removeChild(li);
+            localStorage.removeItem("userdetails");
+          }
         }
       }
     </script>
