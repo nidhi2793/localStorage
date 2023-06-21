@@ -33,6 +33,7 @@
         <li class="item">Item 3</li>
       </ul> -->
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
 
     <script>
       // const btn = document.querySelector(".btn");
@@ -82,15 +83,21 @@
           let obj = { name: nameInput.value, email: emailInput.value };
           // let user = JSON.stringify(obj);
           // localStorage.setItem("User Details", user);
-          let userDetails = localStorage.getItem("userdetails");
-          if (userDetails === null) {
-            userDetails = [];
-          } else {
-            userDetails = JSON.parse(userDetails);
-          }
+          // let userDetails = localStorage.getItem("userdetails");
+          // if (userDetails === null) {
+          //   userDetails = [];
+          // } else {
+          //   userDetails = JSON.parse(userDetails);
+          // }
 
-          userDetails.push(obj);
-          localStorage.setItem("userdetails", JSON.stringify(userDetails));
+          // userDetails.push(obj);
+          axios
+            .post(
+              "https://crudcrud.com/api/50d6eb81242245f0be0a3bc10670771b/appointmentdata",
+              obj
+            )
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
           // [{name:nidhi,email:"agra"}]
         }
       }
@@ -102,7 +109,6 @@
           if (confirm("Are You Sure?")) {
             var li = e.target.parentElement;
             list.removeChild(li);
-            localStorage.removeItem("userdetails");
           }
         }
       }
